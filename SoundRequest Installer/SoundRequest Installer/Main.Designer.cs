@@ -26,11 +26,17 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.minBox = new System.Windows.Forms.PictureBox();
             this.closeBox = new System.Windows.Forms.PictureBox();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
+            this.coverPanel = new System.Windows.Forms.Panel();
+            this.closeLoaderBox = new System.Windows.Forms.PictureBox();
             this.backBtn = new SoundRequest_Installer.UserBtn();
             this.nextBtn = new SoundRequest_Installer.UserBtn();
             this.stepBar = new SoundRequest_Installer.SideBar();
             ((System.ComponentModel.ISupportInitialize)(this.minBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
+            this.coverPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closeLoaderBox)).BeginInit();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -64,6 +70,51 @@
             this.closeBox.TabStop = false;
             this.closeBox.Click += new System.EventHandler(this.closeBox_Click);
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusLabel.Location = new System.Drawing.Point(-68, 21);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(325, 86);
+            this.statusLabel.TabIndex = 9;
+            this.statusLabel.Text = "LOADING";
+            this.statusLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.Location = new System.Drawing.Point(-47, 95);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(275, 42);
+            this.infoLabel.TabIndex = 10;
+            this.infoLabel.Text = "Loading updated data from the server.\r\nThis might take a few seconds.";
+            this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.infoLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
+            // 
+            // coverPanel
+            // 
+            this.coverPanel.Controls.Add(this.closeLoaderBox);
+            this.coverPanel.Controls.Add(this.infoLabel);
+            this.coverPanel.Controls.Add(this.statusLabel);
+            this.coverPanel.Location = new System.Drawing.Point(74, 244);
+            this.coverPanel.Name = "coverPanel";
+            this.coverPanel.Size = new System.Drawing.Size(186, 122);
+            this.coverPanel.TabIndex = 11;
+            this.coverPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
+            // 
+            // closeLoaderBox
+            // 
+            this.closeLoaderBox.Image = global::SoundRequest_Installer.Properties.Resources.Close;
+            this.closeLoaderBox.Location = new System.Drawing.Point(140, 3);
+            this.closeLoaderBox.Name = "closeLoaderBox";
+            this.closeLoaderBox.Size = new System.Drawing.Size(20, 20);
+            this.closeLoaderBox.TabIndex = 12;
+            this.closeLoaderBox.TabStop = false;
+            this.closeLoaderBox.Click += new System.EventHandler(this.closeBox_Click);
+            this.closeLoaderBox.DoubleClick += new System.EventHandler(this.closeBox_Click);
+            // 
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,7 +136,6 @@
             this.nextBtn.Size = new System.Drawing.Size(90, 40);
             this.nextBtn.TabIndex = 7;
             this.nextBtn.OnClick += new System.EventHandler(this.nextBtn_OnClick);
-            this.nextBtn.Paint += new System.Windows.Forms.PaintEventHandler(this.nextBtn_Paint);
             // 
             // stepBar
             // 
@@ -104,6 +154,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(650, 400);
+            this.Controls.Add(this.coverPanel);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.closeBox);
@@ -116,10 +167,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
             this.Text = "SoundRequest";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Paint);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.minBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeBox)).EndInit();
+            this.coverPanel.ResumeLayout(false);
+            this.coverPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closeLoaderBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,6 +188,10 @@
         private System.Windows.Forms.PictureBox closeBox;
         private UserBtn nextBtn;
         private UserBtn backBtn;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.Panel coverPanel;
+        private System.Windows.Forms.PictureBox closeLoaderBox;
     }
 }
 

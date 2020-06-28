@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,16 +56,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SideBar.cs">
+    <Compile Include="Setting.cs" />
+    <Compile Include="UserCtrl\SideBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SideBar.Designer.cs">
+    <Compile Include="UserCtrl\SideBar.Designer.cs">
       <DependentUpon>SideBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserBtn.cs">
+    <Compile Include="UserCtrl\UserBtn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserBtn.Designer.cs">
+    <Compile Include="UserCtrl\UserBtn.Designer.cs">
       <DependentUpon>UserBtn.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
@@ -79,12 +83,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SideBar.resx">
+    <EmbeddedResource Include="UserCtrl\SideBar.resx">
       <DependentUpon>SideBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserBtn.resx">
+    <EmbeddedResource Include="UserCtrl\UserBtn.resx">
       <DependentUpon>UserBtn.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource\Min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FormCtrl\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
