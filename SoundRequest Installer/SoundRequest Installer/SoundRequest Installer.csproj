@@ -59,6 +59,12 @@
     <Compile Include="SideBar.Designer.cs">
       <DependentUpon>SideBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserBtn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserBtn.Designer.cs">
+      <DependentUpon>UserBtn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -71,9 +77,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SideBar.resx">
       <DependentUpon>SideBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserBtn.resx">
+      <DependentUpon>UserBtn.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,6 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\Min.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

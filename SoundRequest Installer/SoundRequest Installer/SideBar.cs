@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
@@ -24,11 +19,14 @@ namespace SoundRequest_Installer {
             }
         }
 
+        [Category("User")]
         public int Index {
             get { return index; }
             set {
                 if (value > tab - 1)
                     index = tab - 1;
+                else if (value < 0)
+                    index = 0;
                 else
                     index = value;
                 update();
@@ -36,8 +34,7 @@ namespace SoundRequest_Installer {
         }
 
         public SideBar() {
-            InitializeComponent();
-            
+            InitializeComponent();   
         }
 
         private void update() {
