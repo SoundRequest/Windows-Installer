@@ -63,6 +63,12 @@
     <Compile Include="UserCtrl\SideBar.Designer.cs">
       <DependentUpon>SideBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserCtrl\Term.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCtrl\Term.Designer.cs">
+      <DependentUpon>Term.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserCtrl\UserBtn.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <EmbeddedResource Include="UserCtrl\SideBar.resx">
       <DependentUpon>SideBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCtrl\Term.resx">
+      <DependentUpon>Term.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserCtrl\UserBtn.resx">
       <DependentUpon>UserBtn.cs</DependentUpon>
@@ -111,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FormCtrl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\Term.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

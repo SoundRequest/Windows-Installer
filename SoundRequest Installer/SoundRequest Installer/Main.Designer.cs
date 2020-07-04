@@ -24,19 +24,23 @@
         /// </summary>
         private void InitializeComponent() {
             this.titleLabel = new System.Windows.Forms.Label();
-            this.minBox = new System.Windows.Forms.PictureBox();
-            this.closeBox = new System.Windows.Forms.PictureBox();
             this.statusLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
             this.coverPanel = new System.Windows.Forms.Panel();
             this.closeLoaderBox = new System.Windows.Forms.PictureBox();
+            this.closeBox = new System.Windows.Forms.PictureBox();
+            this.minBox = new System.Windows.Forms.PictureBox();
+            this.mainFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.backBtn = new SoundRequest_Installer.UserBtn();
             this.nextBtn = new SoundRequest_Installer.UserBtn();
             this.stepBar = new SoundRequest_Installer.SideBar();
-            ((System.ComponentModel.ISupportInitialize)(this.minBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
+            this.term1 = new SoundRequest_Installer.UserCtrl.Term();
+            this.term2 = new SoundRequest_Installer.UserCtrl.Term();
             this.coverPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeLoaderBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBox)).BeginInit();
+            this.mainFlowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -49,26 +53,6 @@
             this.titleLabel.TabIndex = 4;
             this.titleLabel.Text = "SoundRequest Installer";
             this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
-            // 
-            // minBox
-            // 
-            this.minBox.Image = global::SoundRequest_Installer.Properties.Resources.Min;
-            this.minBox.Location = new System.Drawing.Point(592, 12);
-            this.minBox.Name = "minBox";
-            this.minBox.Size = new System.Drawing.Size(20, 20);
-            this.minBox.TabIndex = 5;
-            this.minBox.TabStop = false;
-            this.minBox.Click += new System.EventHandler(this.minBox_Click);
-            // 
-            // closeBox
-            // 
-            this.closeBox.Image = global::SoundRequest_Installer.Properties.Resources.Close;
-            this.closeBox.Location = new System.Drawing.Point(618, 12);
-            this.closeBox.Name = "closeBox";
-            this.closeBox.Size = new System.Drawing.Size(20, 20);
-            this.closeBox.TabIndex = 6;
-            this.closeBox.TabStop = false;
-            this.closeBox.Click += new System.EventHandler(this.closeBox_Click);
             // 
             // statusLabel
             // 
@@ -98,7 +82,7 @@
             this.coverPanel.Controls.Add(this.closeLoaderBox);
             this.coverPanel.Controls.Add(this.infoLabel);
             this.coverPanel.Controls.Add(this.statusLabel);
-            this.coverPanel.Location = new System.Drawing.Point(74, 244);
+            this.coverPanel.Location = new System.Drawing.Point(75, 371);
             this.coverPanel.Name = "coverPanel";
             this.coverPanel.Size = new System.Drawing.Size(186, 122);
             this.coverPanel.TabIndex = 11;
@@ -115,11 +99,41 @@
             this.closeLoaderBox.Click += new System.EventHandler(this.closeBox_Click);
             this.closeLoaderBox.DoubleClick += new System.EventHandler(this.closeBox_Click);
             // 
+            // closeBox
+            // 
+            this.closeBox.Image = global::SoundRequest_Installer.Properties.Resources.Close;
+            this.closeBox.Location = new System.Drawing.Point(618, 12);
+            this.closeBox.Name = "closeBox";
+            this.closeBox.Size = new System.Drawing.Size(20, 20);
+            this.closeBox.TabIndex = 6;
+            this.closeBox.TabStop = false;
+            this.closeBox.Click += new System.EventHandler(this.closeBox_Click);
+            // 
+            // minBox
+            // 
+            this.minBox.Image = global::SoundRequest_Installer.Properties.Resources.Min;
+            this.minBox.Location = new System.Drawing.Point(592, 12);
+            this.minBox.Name = "minBox";
+            this.minBox.Size = new System.Drawing.Size(20, 20);
+            this.minBox.TabIndex = 5;
+            this.minBox.TabStop = false;
+            this.minBox.Click += new System.EventHandler(this.minBox_Click);
+            // 
+            // mainFlowPanel
+            // 
+            this.mainFlowPanel.Controls.Add(this.term1);
+            this.mainFlowPanel.Controls.Add(this.term2);
+            this.mainFlowPanel.Location = new System.Drawing.Point(62, 65);
+            this.mainFlowPanel.Name = "mainFlowPanel";
+            this.mainFlowPanel.Size = new System.Drawing.Size(550, 270);
+            this.mainFlowPanel.TabIndex = 12;
+            this.mainFlowPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainFlowPanel_Paint);
+            // 
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.ForeColor = System.Drawing.Color.White;
-            this.backBtn.LabelText = "Back";
+            this.backBtn.LabelText = "뒤로";
             this.backBtn.Location = new System.Drawing.Point(452, 348);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(90, 40);
@@ -130,7 +144,7 @@
             // 
             this.nextBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextBtn.ForeColor = System.Drawing.Color.White;
-            this.nextBtn.LabelText = "Next";
+            this.nextBtn.LabelText = "다음";
             this.nextBtn.Location = new System.Drawing.Point(548, 348);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(90, 40);
@@ -148,6 +162,26 @@
             this.stepBar.TabIndex = 0;
             this.stepBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
             // 
+            // term1
+            // 
+            this.term1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.term1.LabelText = "이용약관";
+            this.term1.Location = new System.Drawing.Point(3, 3);
+            this.term1.Name = "term1";
+            this.term1.Size = new System.Drawing.Size(340, 50);
+            this.term1.TabIndex = 0;
+            this.term1.URL = null;
+            // 
+            // term2
+            // 
+            this.term2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.term2.LabelText = "개인정보처리방침";
+            this.term2.Location = new System.Drawing.Point(3, 59);
+            this.term2.Name = "term2";
+            this.term2.Size = new System.Drawing.Size(340, 50);
+            this.term2.TabIndex = 1;
+            this.term2.URL = null;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +195,7 @@
             this.Controls.Add(this.minBox);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.stepBar);
+            this.Controls.Add(this.mainFlowPanel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
@@ -170,11 +205,12 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Paint);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
-            ((System.ComponentModel.ISupportInitialize)(this.minBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).EndInit();
             this.coverPanel.ResumeLayout(false);
             this.coverPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeLoaderBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBox)).EndInit();
+            this.mainFlowPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,6 +228,9 @@
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Panel coverPanel;
         private System.Windows.Forms.PictureBox closeLoaderBox;
+        private System.Windows.Forms.FlowLayoutPanel mainFlowPanel;
+        private UserCtrl.Term term1;
+        private UserCtrl.Term term2;
     }
 }
 
