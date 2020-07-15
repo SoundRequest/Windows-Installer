@@ -26,6 +26,9 @@ namespace SoundRequest {
             shortcut.Location = new Point(installLoc.Left + 2, installLoc.Top + installLoc.Height + 2);
             install.Left = changeLoc.Left + changeLoc.Width - install.Width;
 
+            progressBar1.Value = 0;
+            progressText.Text = "";
+
             progressBar1.Location = new Point((Width - progressBar1.Width) / 2, installText.Top + installText.Height + 10);
             progressText.Location = new Point(progressBar1.Left + progressBar1.wLoc - progressText.Width / 2, progressBar1.Top + progressBar1.Height + 2);
 
@@ -100,6 +103,8 @@ namespace SoundRequest {
         }
 
         private void Completed(object sender, AsyncCompletedEventArgs e) {
+            changeProText("다운로드 완료");
+
             if (Directory.Exists(tempLoc + "\\SoundRequest")) {
                 try {
                     Directory.Delete(tempLoc + "\\SoundRequest", true);
@@ -108,6 +113,7 @@ namespace SoundRequest {
                 }
             }
 
+            changeProText("압축을 해제하는 중");
             ZipFile.ExtractToDirectory(tempLoc + "\\SR_Temp.zip", tempLoc + "\\SoundRequest");
             if (File.Exists(tempLoc + "\\SR_Temp.zip")) {
                 try {
@@ -118,8 +124,17 @@ namespace SoundRequest {
             }
 
             if (shortcut.Checked && Setting.shortcut != "") {
+                changeProText("바로가기 생성중");
                 string deskDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 using (StreamWriter writer = new StreamWriter(deskDir + "\\SoundRequest.url")) {
+                    string app = tempLoc + "\\SoundRequest\\" + Setting.shortcut;
+                    writer.WriteLine("[InternetShortcut]");
+                    writer.WriteLine("URL=file:///" + app);
+                    writer.WriteLine("IconIndex=0");
+                    string icon = app.Replace('\\', '/');
+                    writer.WriteLine("IconFile=" + icon);
+                }
+                using (StreamWriter writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + "\\SoundRequest.url")) {
                     string app = tempLoc + "\\SoundRequest\\" + Setting.shortcut;
                     writer.WriteLine("[InternetShortcut]");
                     writer.WriteLine("URL=file:///" + app);
@@ -140,8 +155,14 @@ namespace SoundRequest {
 
         private void progressTextUpdate(object sender, DownloadProgressChangedEventArgs e) {
             progressBar1.Value = e.ProgressPercentage;
-            progressText.Left = progressBar1.Left + progressBar1.wLoc - progressText.Width / 2;
             progressText.Text = e.ProgressPercentage.ToString();
+            progressText.Left = progressBar1.Left + progressBar1.wLoc - progressText.Width / 2;
+        }
+
+        private void changeProText(string text) {
+            progressText.Text = text;
+            progressText.Left = progressBar1.Left + (progressBar1.Width - progressText.Width) / 2;
+            Refresh();
         }
 
         private void Main_Paint(object sender, PaintEventArgs e) {
